@@ -1,0 +1,79 @@
+Esto es un texto plano que contiene comando por comando de la terminal de Mac
+Objetivo: Data Analytist en Shell 
+Base de datos: mtcars.csv
+
+
+VER DOCUMENTOS EN TERMINAL 
+
+#Muestra el documento con todas sus columnas
+
+cat mtcars.csv
+cat mtcars.txt
+
+#Muestra el documento con todas sus columnas por parte 
+#:n avanza de pagina 
+#:q sale de la pagina
+
+less mtcars.csv
+less mtcars.txt
+
+#Muestra los ultimas posiciones de nuestra data 
+
+tail mtcars.csv
+
+#Solo para que muestre las ultimas 3 posiciones
+#Esto es ideal para comenzar a conocer bases grandes que con cat no vamos a poder detectar 
+
+tail -n 3 mtcars.csv
+
+#Solo para que muestre las primeras posiciones
+
+head mtcars.txt
+head -n 5 mtcars.csv
+
+#SELECCIONANDO COLUMNS AND ROW 
+
+#Selecciono la 2 columna de nuestra data
+
+cut -f 2 -d, mtcars.csv
+
+#Selecciono la 1,2,3,5 columna de nuestra data
+#Esto es ideal para comenzar con nuestros primeros filtrados
+
+cut -f 1,2,3,5 -d, mtcars.csv
+
+#Seleccionando rows de nuestra data
+#Imprime todas las lineas que contenga la palabra FORD
+
+grep Ford mtcars.csv
+
+#Imprimir la cantidad de veces que se repite la palabra FORD en la data
+
+grep -c Ford mtcars.csv
+
+#Algunos parametros para pasarle
+#-c imprime cantidad de palabras
+#-h no imprimir nada en pantalla
+#-i ignora mayusculas en la busqueda
+#-l muestra solo el documento que contiene la busqueda
+#n numero de encuentros y ubicación del row
+#-v invierte la busqueda. Todo menos lo que le pasemos 
+
+ALMACENAMIENTO DE FILTRADOS 
+
+#Almacena nuestro filtro en un nuevo documento: >
+
+head -n 10 mtcars.csv > mtcars_primeros.csv
+tail -n 5 mtcars.csv > mtcars_ultimos.csv
+cut -f 3,5,6,7 -d, mtcars.csv > mtcars_nuevadata.csv
+grep Chevrolet mtcars.csv > chevrolet.csv
+
+ORDENANDO Y COMBINANDO COMANDOS 
+
+#Muestra los 10 primeros resultados y los ordena 
+
+head -n 10 mtcars.csv | sort 
+
+#Muestra los 10 primeros resultados, los ultimos 10, y los ordena
+
+head -n1 10 mtcars.csv | tail -n 10 | sort
